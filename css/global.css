@@ -1,0 +1,42 @@
+.ticket, #pagination
+{
+	width:50%;
+	margin-left:25%;
+	margin-right:25%;
+	text-align:center;
+}
+
+.divgif
+{
+	padding-top:1%;
+}
+
+.imagegif
+{
+	width:50%;
+}
+
+#pagination
+{
+	padding-bottom:2%;
+}
+
+.titre
+{
+	font-family:Arial;
+}
+
+.infos
+{
+    font-style: italic;
+}
+
+#prec
+{
+	float:left;
+}
+
+#suiv
+{
+	float:right;
+}
