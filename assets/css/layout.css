@@ -6,6 +6,18 @@ body {
 .hero-unit {
   background: #e5eabf;
 }
-  .hero-unit h1 strong {
-    color: #b2c60d;
-  }
+.hero-unit h1 strong {
+color: #b2c60d;
+}
+img
+{
+    width: 100%;
+}
+[class="row"]
+{
+    margin-bottom: 10px; margin-top: 10px;
+}
+input
+{
+    height: 15px;
+}

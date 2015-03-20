@@ -1,72 +1,50 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <title>Les Joies de Coriolis</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link rel="stylesheet" type="text/css" href="<?php echo Atomik::asset('assets/css/index.css');?>">
+<div class="row">
+  <div class="col-sm-12 text-center" >
+    <div class="btn-group">
 
-    <style type="text/css">
-      img { width: 100%; }
-      [class*="col"] { margin-bottom: 10px; margin-top: 10px; }
-    </style>
-  </head>
-  <body>
-    <div class="row">
-      <div class="col-sm-12 text-center" >
-        <div class="btn-group">
+      <?php if($page > 1):?>
+        <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => 1));?>"><<</a>
+        <a class="btn btn-info" id="prec" href="<?php echo Atomik::url('index', array('page' => $page-1));?>"><</a>
+        <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $page-1));?>"><?php echo $page-1;?></a>
+      <?php endif ?>
 
-          <?php if($page > 1):?>
-            <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => 1));?>"><<</a>
-            <a class="btn btn-info" id="prec" href="<?php echo Atomik::url('index', array('page' => $page-1));?>"><</a>
-            <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $page-1));?>"><?php echo $page-1;?></a>
-          <?php endif ?>
+      <a class="btn" href="#"><?php echo $row["titre"];?></a>
 
-          <a class="btn" href="#"><?php echo $row["titre"];?></a>
+      <?php if ($page < $nbpages):?>
+        <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $page+1));?>"><?php echo $page+1;?></a>
+        <a class="btn btn-info" id="suiv" href="<?php echo Atomik::url('index', array('page' => $page+1));?>">></a>
+        <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $nbpages));?>">>></a>
+      <?php endif ?>
 
-          <?php if ($page < $nbpages):?>
-            <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $page+1));?>"><?php echo $page+1;?></a>
-            <a class="btn btn-info" id="suiv" href="<?php echo Atomik::url('index', array('page' => $page+1));?>">></a>
-            <a class="btn btn-info" href="<?php echo Atomik::url('index', array('page' => $nbpages));?>">>></a>
-          <?php endif ?>
-
-        </div>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3 text-right" >
-        <img class="img-rounded" src="<?php echo Atomik::asset('assets/' . $row["url"]);?>">
-        <span class="label label-default">le <?php echo $row["dateheure"];?> par <?php echo $row["auteur"];?></span>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function ()
-      {
-        var keys = {};
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3 text-right" >
+    <img class="img-rounded" src="<?php echo Atomik::asset('assets/' . $row["url"]);?>">
+    <span class="label label-default">le <?php echo $row["dateheure"];?> par <?php echo $row["auteur"];?></span>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function ()
+  {
+    var keys = {};
 
-        $(window).on("keyup keydown", function (e) {
-          e = e || event;
-          keys[e.keyCode] = e.type === 'keydown';
+    $(window).on("keyup keydown", function (e) {
+      e = e || event;
+      keys[e.keyCode] = e.type === 'keydown';
 
-          console.log(e.keyCode);
+      console.log(e.keyCode);
 
-          //39=droite 74=j 78=n
-          if (keys[39] || keys[74] || keys[78]) {
-            $('#suiv').get(0).click();
-          }
-          //37=gauche 75=k 80=p
-          else if (keys[37] || keys[75] || keys[80]) {
-            $('#prec').get(0).click();
-          }
-        })
-      });
-    </script>  
-  </body>
-</html>
+      //39=droite 74=j 78=n
+      if (keys[39] || keys[74] || keys[78]) {
+        $('#suiv').get(0).click();
+      }
+      //37=gauche 75=k 80=p
+      else if (keys[37] || keys[75] || keys[80]) {
+        $('#prec').get(0).click();
+      }
+    })
+  });
+</script>  

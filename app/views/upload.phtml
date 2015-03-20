@@ -1,0 +1,57 @@
+<link rel="stylesheet" type="text/css" href="<?php echo Atomik::asset('assets/css/upload.css');?>">
+<div class="row">
+  <div class="col-sm-10 col-sm-push-1 col-md-10 col-md-push-2 col-lg-6 col-lg-push-3 text-center" >
+    <div class="input-group">
+      <input id="quoteInput" name="quote" class="form-control" placeholder="Citation" type="text" required="true">
+      <span class="input-group-btn">
+        <button id = "quoteBtn" class="btn btn-info" type="button" onclick="envoie()">Valider</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 col-sm-push-1 col-md-10 col-md-push-2 col-lg-6 col-lg-push-3 text-right" >
+    <!-- zone pour dropper l'image --><!--img class="img-rounded" src=""-->
+    <img class="dropable dropbox img-rounded" src="">
+
+    <!-- zone pour saisir le nom de l'auteur -->
+    <div class="row">
+      <div class="col-md-push-8 col-md-4">
+        <input id="autor" name="autor" class="form-control" placeholder="Auteur" type="text" required="true">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<?php echo Atomik::asset('assets/js/drop.js');?>"></script>
+<script type="text/javascript">
+
+  var image = null;
+
+  $(document).ready(function ()
+  {
+    Drop.addDropZone(
+
+      function (files)
+      {
+        /*console.log(files);*/
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            console.log(files[0]);
+            console.log(event);
+            image = event.target.result
+            $("img.dropable").attr("src", image);
+            $(".dropbox").removeClass("dropbox");
+        };
+        reader.readAsDataURL(files[0]);
+      }
+    );
+  });
+  
+  function envoie(){
+    $.post( "<?php echo Atomik::asset('assets/php/addTicket.php');?>", { image:image, autor:$("#autor").val(), quote:$("#quoteInput").val()})
+      .done(function( data ) {
+        alert( "Data Loaded: " + data );
+      });
+  }
+</script> 
