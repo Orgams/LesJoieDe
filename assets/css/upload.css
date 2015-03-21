@@ -1,0 +1,21 @@
+.dropbox 
+{
+    height: 300px;
+    border: 4px solid #CCC;
+    border-style: dashed;
+    border-radius: 8px;
+    text-align: center;
+    color: #CCC;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+}
+#quoteInput, #quoteBtn 
+{
+    height: 35px;
+}
+
+#autor
+{
+    background-color: #777;
+    color: #fff;
+}
