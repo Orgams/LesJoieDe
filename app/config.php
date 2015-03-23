@@ -18,7 +18,7 @@ Atomik::set(array(
     ,'app.layout' => '_layout'
 
     // WARNING: change this to false when in production
-    ,'atomik.debug' => true
+    ,'atomik.debug' => false
 
     ,'atomik.url_rewriting' => true
     
